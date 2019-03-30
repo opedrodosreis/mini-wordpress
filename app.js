@@ -3,10 +3,25 @@ const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const path = require('path')
+const session = require('express-session')
+const flash = require('connect-flash')
 
 const admin = require('./routes/admin')
 
 const app = express()
+
+app.use(session({
+    secret: "cursodenode",
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash())
+
+app.use((req, res, next) => {
+    res.locals.success_msg = flash("success_msg")
+    res.locals.error_msg = flash("error_msg")
+    next()
+})
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
