@@ -18,8 +18,8 @@ app.use(session({
 app.use(flash())
 
 app.use((req, res, next) => {
-    res.locals.success_msg = flash("success_msg")
-    res.locals.error_msg = flash("error_msg")
+    res.locals.success_msg = req.flash("success_msg")
+    res.locals.error_msg = req.flash("error_msg")
     next()
 })
 
