@@ -32,7 +32,7 @@ app.set('view engine', 'handlebars')
 app.use(express.static(path.join(__dirname, 'public')))
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost/blogApp").then(() => {
+mongoose.connect("mongodb://localhost/blogApp", { useNewUrlParser: true }).then(() => {
     console.log("Conectado ao mongo")
 }).catch((err) => {
     console.log("Erro ao se conectar: " + err)
