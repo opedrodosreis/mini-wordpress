@@ -11,6 +11,7 @@ require('./models/Categoria')
 const Categoria = mongoose.model('categorias')
 
 const admin = require('./routes/admin')
+const usuario = require('./routes/usuario')
 
 const app = express()
 
@@ -121,6 +122,7 @@ app.get('/404', (req, res) => {
 })
 
 app.use('/admin', admin)
+app.use('/usuario', usuario)
 
 const PORT = process.env.PORT || 8081
 
